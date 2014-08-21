@@ -1,5 +1,5 @@
 {
-    "name": "grunt-codeclimate",
+    "name": "grunt-codeclimate-reporter",
     "description": "Send your coverage to codeclimate.",
     "version": "1.0.0",
     "homepage": "https://github.com/MrBoolean/grunt-codeclimate",
