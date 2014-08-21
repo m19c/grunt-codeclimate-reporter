@@ -1,50 +1,35 @@
-/*
- * grunt-codeclimate
- * https://github.com/MrBoolean/grunt-codeclimate
- *
- * Copyright (c) 2014 MrBoolean
- * Licensed under the MIT license.
- */
+var runner = require('child_process').exec,
+    fs     = require('fs'),
+    binary = __dirname + '/../node_modules/.bin/codeclimate';
 
-'use strict';
+module.exports = function (grunt) {
+    'use strict';
 
-module.exports = function(grunt) {
+    grunt.registerMultiTask('codeclimate', 'Send your coverage to codeclimate.', function () {
+        var done    = this.async(),
+            options = this.options({
+                token: false,
+                file: ''
+            });
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+        fs.exists(options.file, function (isPresent) {
+            if (false === isPresent) {
+                throw new Error('Cannot find coverage report file "' + options.file + '"');
+            }
 
-  grunt.registerMultiTask('codeclimate', 'Send your coverage to codeclimate.', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
+            var command = 'CODECLIMATE_REPO_TOKEN=' + options.token + ' ' + binary + ' < ' + options.file;
+
+            runner(command, function (error, result) {
+                if (error) {
+                    throw new Error(
+                        'Something went wrong during the execution of codeclimate. ' +
+                        'Make sure your configuration is valid'
+                    );
+                }
+
+                grunt.log.ok(result);
+                done();
+            });
+        });
     });
-
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Handle options.
-      src += options.punctuation;
-
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
-  });
-
 };

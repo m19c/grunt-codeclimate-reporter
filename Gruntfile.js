@@ -1,73 +1,31 @@
-/*
- * grunt-codeclimate
- * https://github.com/MrBoolean/grunt-codeclimate
- *
- * Copyright (c) 2014 MrBoolean
- * Licensed under the MIT license.
- */
+module.exports = function (grunt) {
+    'use strict';
 
-'use strict';
-
-module.exports = function(grunt) {
-
-  // Project configuration.
-  grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
-      ],
-      options: {
-        jshintrc: '.jshintrc',
-      },
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp'],
-    },
-
-    // Configuration to be run (and then tested).
-    codeclimate: {
-      default_options: {
-        options: {
+    // Project configuration.
+    grunt.initConfig({
+        jshint: {
+            all: [
+                'Gruntfile.js',
+                'tasks/*.js'
+            ],
+            options: {
+                jshintrc: '.jshintrc'
+            }
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-    },
+        codeclimate: {
+            coverage: {
+                options: {
+                    file: __dirname + '/../../segony-build/dist/lcov.info',
+                    token: 'ec3ee6b4447b58b59a914d887acfef6706a0a072b36188b254fa54f48d24b9a5 '
+                }
+            }
+        }
+    });
 
-    // Unit tests.
-    nodeunit: {
-      tests: ['test/*_test.js'],
-    },
+    grunt.loadTasks('tasks');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  });
-
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
-
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'codeclimate', 'nodeunit']);
-
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
-
+    grunt.registerTask('coverage', ['codeclimate:coverage']);
+    grunt.registerTask('test', ['test']);
+    grunt.registerTask('default', ['jshint', 'test']);
 };
