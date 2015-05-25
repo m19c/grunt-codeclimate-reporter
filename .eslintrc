@@ -1,0 +1,27 @@
+{
+  "env": {
+    "node": true
+  },
+  "globals": {
+    "describe": true,
+    "it": true,
+    "before": true,
+    "after": true
+  },
+  "rules": {
+    "semi": 2,
+    "one-var": [2, {
+      "var": "always"
+    }],
+    "quotes": "single",
+    "eol-last": "never",
+    "no-multiple-empty-lines": [2, { "max": 1 }],
+    "no-trailing-spaces": "always",
+    "no-multi-spaces": "never",
+    "no-mixed-requires": "never",
+    "key-spacing": "always",
+    "no-underscore-dangle": "never",
+    "yoda": "always",
+    "consistent-return": "never"
+  }
+}
