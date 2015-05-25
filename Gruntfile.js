@@ -12,14 +12,19 @@ module.exports = function (grunt) {
       }
     },
     eslint: {
-      target: ['tasks/**/*.js', 'Gruntfile.js']
+      target: ['tasks/**/*.js', 'lib/**/*.js', 'Gruntfile.js']
+    },
+    mocha: {
+      test: {
+        src: ['test/**/*.test.js']
+      }
     }
   });
 
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-eslint');
+  grunt.loadNpmTasks('grunt-mocha');
 
-  grunt.registerTask('coverage', ['codeclimate:coverage']);
-  grunt.registerTask('test', ['test']);
+  grunt.registerTask('test', ['mocha:test']);
   grunt.registerTask('default', ['eslint', 'test']);
 };
