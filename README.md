@@ -19,15 +19,15 @@ grunt.loadNpmTasks('grunt-codeclimate-reporter');
 Setup:
 ```js
 grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    // ...
-    // run coverage
-    codeclimate: {
-        options: {
-            file: 'path/to/your/lcov.info',
-            token: 'your_token'
-        }
+  pkg: grunt.file.readJSON('package.json'),
+  // ...
+  // run coverage
+  codeclimate: {
+    options: {
+      file: 'path/to/your/lcov.info',
+      token: 'your_token'
     }
-    // ...
+  }
+  // ...
 });
 ```
