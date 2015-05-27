@@ -27,7 +27,6 @@
   "devDependencies": {
     "grunt-eslint": "~13.0.0",
     "grunt-contrib-clean": "~0.6.0",
-    "grunt-mocha": "~0.4.12",
     "grunt": "~0.4.5",
     "chai": "~2.3.0",
     "chai-as-promised": "~5.0.0"
