@@ -13,11 +13,6 @@ module.exports = function (grunt) {
     },
     eslint: {
       target: ['tasks/**/*.js', 'lib/**/*.js', 'Gruntfile.js']
-    },
-    mocha: {
-      test: {
-        src: ['test/**/*.test.js']
-      }
     }
   });
 
@@ -25,6 +20,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha');
 
-  grunt.registerTask('test', ['mocha:test']);
-  grunt.registerTask('default', ['eslint', 'test']);
+  grunt.registerTask('default', ['eslint']);
 };
