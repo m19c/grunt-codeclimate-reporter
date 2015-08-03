@@ -21,11 +21,12 @@ Setup:
 grunt.initConfig({
   pkg: grunt.file.readJSON('package.json'),
   // ...
-  // run coverage
   codeclimate: {
     options: {
-      file: 'path/to/your/lcov.info',
-      token: 'your_token'
+      main: {
+        file: 'path/to/your/lcov.info',
+        token: 'your_token'
+      }
     }
   }
   // ...
