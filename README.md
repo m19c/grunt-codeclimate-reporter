@@ -22,8 +22,8 @@ grunt.initConfig({
   pkg: grunt.file.readJSON('package.json'),
   // ...
   codeclimate: {
-    options: {
-      main: {
+    main: {
+      options: {
         file: 'path/to/your/lcov.info',
         token: 'your_token'
       }
@@ -32,3 +32,5 @@ grunt.initConfig({
   // ...
 });
 ```
+
+**Note** that, `grunt-codeclimate-reporter` is registered as a multi task. So it is required to define your sub task e.g. `main` (or something else).
