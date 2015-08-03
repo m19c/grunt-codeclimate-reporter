@@ -1,4 +1,7 @@
-# grunt-codeclimate-reporter
+[![Build Status](https://travis-ci.org/MrBoolean/grunt-codeclimate-reporter.svg)](https://travis-ci.org/MrBoolean/grunt-codeclimate-reporter)
+
+grunt-codeclimate-reporter
+==========================
 > Send your coverage to codeclimate.
 
 ## Getting Started
