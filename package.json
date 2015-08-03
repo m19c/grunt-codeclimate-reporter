@@ -1,7 +1,7 @@
 {
   "name": "grunt-codeclimate-reporter",
   "description": "Send your coverage to codeclimate.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "homepage": "https://github.com/MrBoolean/grunt-codeclimate",
   "author": {
     "name": "MrBoolean",
@@ -18,7 +18,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "./node_modules/.bin/grunt test && ./node_modules/.bin/grunt eslint"
   },
   "dependencies": {
     "bluebird": "^2.9.33",
@@ -28,6 +28,7 @@
     "chai": "^3.0.0",
     "chai-as-promised": "^5.1.0",
     "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-eslint": "^16.0.0",
     "grunt-mocha-test": "^0.12.7",
