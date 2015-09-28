@@ -4,6 +4,8 @@ grunt-codeclimate-reporter
 ==========================
 > Send your coverage to codeclimate.
 
+See [gulp-codeclimate-reporter](https://github.com/MrBoolean/gulp-codeclimate-reporter).
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
