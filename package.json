@@ -1,7 +1,7 @@
 {
   "name": "grunt-codeclimate-reporter",
   "description": "Send your coverage to codeclimate.",
-  "version": "1.2.0-rc1",
+  "version": "1.2.0",
   "homepage": "https://github.com/MrBoolean/grunt-codeclimate",
   "author": "Marc Binder <marcandrebinder@gmail.com>",
   "repository": {
