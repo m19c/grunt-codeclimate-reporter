@@ -1,22 +1,19 @@
-var codeCliMate  = require('../lib/codeclimate');
+var reporter = require('../lib/reporter');
 
-module.exports = function (grunt) {
-  'use strict';
-
-  grunt.registerMultiTask('codeclimate', 'Send your coverage to codeclimate.', function () {
-    var done, options;
-
-    done    = this.async();
-    options = this.options({
+module.exports = function task(grunt) {
+  grunt.registerMultiTask('codeclimate', 'Send your coverage to codeclimate.', function codeclimate() {
+    var done = this.async();
+    var options = this.options({
       token: false,
-      file:  ''
+      file: '',
+      executable: null
     });
 
-    codeCliMate(options)
-      .then(function (res) {
+    reporter(options)
+      .then(function respondWithRes(res) {
         grunt.log.ok(res);
       })
-      .catch(function (err) {
+      .catch(function catchErr(err) {
         throw err;
       })
       .finally(done)

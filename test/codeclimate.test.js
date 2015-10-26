@@ -1,26 +1,24 @@
-var chai           = require('chai'),
-    sinon          = require('sinon'),
-    chaiAsPromised = require('chai-as-promised'),
-    assert         = chai.assert,
-    path           = require('path'),
-    proxyquire     = require('proxyquire'),
-    codeCliMate    = null;
+var chai = require('chai');
+var sinon = require('sinon');
+var chaiAsPromised = require('chai-as-promised');
+var assert = chai.assert;
+var path = require('path');
+var proxyquire = require('proxyquire');
+var codeCliMate = null;
 
 chai.use(chaiAsPromised);
 
-describe('tasks/codeclimate', function () {
-  'use strict';
-
-  it('throws an error if the file does not exist', function () {
-    codeCliMate = require('../lib/codeclimate');
+describe('tasks/codeclimate', function codeclimateTasktest() {
+  it('throws an error if the file does not exist', function lcovFileNotExistTest() {
+    codeCliMate = require('../lib/reporter');
     assert.isRejected(
       codeCliMate({ file: 'path/to/nowhere' }),
-      'Cannot find coverage report file "path/to/nowhere"'
+      'The lcov file "path/to/nowhere" does not exist'
     );
   });
 
-  it('throws an error if something went wrong during the execution of codeclimate', function () {
-    codeCliMate = require('../lib/codeclimate');
+  it('throws an error if something went wrong during the execution of codeclimate', function somethingWentWrongTest() {
+    codeCliMate = require('../lib/reporter');
 
     assert.isRejected(
       codeCliMate({
@@ -31,33 +29,34 @@ describe('tasks/codeclimate', function () {
     );
   });
 
-  describe('invocation of codeclimate bin', function() {
-    var fakeToken, execStub;
+  describe('invocation of codeclimate bin', function invocationTest() {
+    var fakeToken;
+    var execStub;
 
-    beforeEach(function() {
+    beforeEach(function runBeforeEach() {
       fakeToken = 'abcde';
       execStub = sinon.stub();
 
-      codeCliMate = proxyquire('../lib/codeclimate', {
+      codeCliMate = proxyquire('../lib/reporter', {
         'child_process': {
           exec: execStub
         }
       });
     });
 
-    it('spawns a child process with the correct executable', function (done) {
-      var basePath = path.resolve(__dirname, '..'),
-          bin      = path.resolve(basePath, 'node_modules/.bin/codeclimate'),
-          lcovFile = path.resolve(basePath, 'test/coverage.lcov'),
-          command  = 'CODECLIMATE_REPO_TOKEN=' + fakeToken + ' ' + bin + ' < ' + lcovFile;
+    it('spawns a child process with the correct executable', function spawnCorrectTest(done) {
+      var basePath = path.resolve(__dirname, '..');
+      var bin = path.resolve(basePath, 'node_modules/.bin/codeclimate');
+      var lcovFile = path.resolve(basePath, 'test/coverage.lcov');
+      var command = 'CODECLIMATE_REPO_TOKEN=' + fakeToken + ' ' + bin + ' < ' + lcovFile;
 
       execStub.callsArg(1);
 
       codeCliMate({
         token: fakeToken,
-        file:  lcovFile
+        file: lcovFile
       })
-        .then(function() {
+        .then(function runAssertion() {
           assert.equal(execStub.getCall(0).args[0], command);
         })
         .then(done)
@@ -65,19 +64,20 @@ describe('tasks/codeclimate', function () {
       ;
     });
 
-    it('rejects with error from exec', function(done) {
+    it('rejects with error from exec', function rejectWithErrorTest(done) {
       var fakeError = new Error('Fake');
 
       execStub.callsArgWith(1, fakeError);
 
       codeCliMate({
         token: fakeToken,
-        file:  path.join(__dirname, 'coverage.lcov')
+        file: path.join(__dirname, 'coverage.lcov')
       })
-        .catch(function(err) {
+        .catch(function assertionTest(err) {
           assert.equal(err.message, fakeError.message);
         })
-        .finally(done);
+        .finally(done)
+      ;
     });
   });
 });

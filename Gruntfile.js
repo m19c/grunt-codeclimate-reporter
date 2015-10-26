@@ -1,6 +1,4 @@
-module.exports = function (grunt) {
-  'use strict';
-
+module.exports = function gruntfile(grunt) {
   grunt.initConfig({
     eslint: {
       options: {
@@ -9,7 +7,7 @@ module.exports = function (grunt) {
       target: ['tasks/**/*.js', 'lib/**/*.js', 'Gruntfile.js', 'test/**/*.js']
     },
     mochaTest: {
-      src:     ['test/**/*.js'],
+      src: ['test/**/*.js'],
       options: {
         reporter: 'nyan'
       }
