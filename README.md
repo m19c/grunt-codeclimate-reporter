@@ -1,27 +1,25 @@
-[![Build Status](https://travis-ci.org/MrBoolean/grunt-codeclimate-reporter.svg)](https://travis-ci.org/MrBoolean/grunt-codeclimate-reporter)
-
 grunt-codeclimate-reporter
 ==========================
 > Send your coverage to codeclimate.
 
-See [gulp-codeclimate-reporter](https://github.com/MrBoolean/gulp-codeclimate-reporter).
+[![Build Status](https://travis-ci.org/MrBoolean/grunt-codeclimate-reporter.svg)](https://travis-ci.org/MrBoolean/grunt-codeclimate-reporter)
 
-## Getting Started
-This plugin requires Grunt `~0.4.5`
+Checkout [gulp-codeclimate-reporter](https://github.com/MrBoolean/gulp-codeclimate-reporter).
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
-
+## Install
 ```shell
 npm install grunt-codeclimate-reporter --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+## Usage
+### Load task
+Once the plugin has been installed, it may be enabled inside your `Gruntfile.js` with this line of JavaScript:
 
 ```js
 grunt.loadNpmTasks('grunt-codeclimate-reporter');
 ```
 
-Setup:
+### Define your target
 ```js
 grunt.initConfig({
   pkg: grunt.file.readJSON('package.json'),
@@ -30,7 +28,8 @@ grunt.initConfig({
     main: {
       options: {
         file: 'path/to/your/lcov.info',
-        token: 'your_token'
+        token: 'your_token',
+        executable: 'path/to/executable' // leave blank to use the default executable
       }
     }
   }

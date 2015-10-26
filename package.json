@@ -3,10 +3,7 @@
   "description": "Send your coverage to codeclimate.",
   "version": "1.2.0",
   "homepage": "https://github.com/MrBoolean/grunt-codeclimate",
-  "author": {
-    "name": "MrBoolean",
-    "email": "marcandrebinder@gmail.com"
-  },
+  "author": "Marc Binder <marcandrebinder@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/MrBoolean/grunt-codeclimate-reporter.git"
@@ -15,10 +12,10 @@
     "url": "https://github.com/MrBoolean/grunt-codeclimate-reporter/issues"
   },
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/grunt test && ./node_modules/.bin/grunt eslint"
+    "test": "./node_modules/.bin/grunt test"
   },
   "dependencies": {
     "bluebird": "^2.9.33",
