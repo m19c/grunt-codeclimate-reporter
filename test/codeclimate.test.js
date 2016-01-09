@@ -48,7 +48,7 @@ describe('tasks/codeclimate', function codeclimateTasktest() {
       var basePath = path.resolve(__dirname, '..');
       var bin = path.resolve(basePath, 'node_modules/.bin/codeclimate');
       var lcovFile = path.resolve(basePath, 'test/coverage.lcov');
-      var command = 'CODECLIMATE_REPO_TOKEN=' + fakeToken + ' ' + bin + ' < ' + lcovFile;
+      var command = 'CODECLIMATE_REPO_TOKEN=' + fakeToken + ' ' + bin + ' < \"' + lcovFile + '\"';
 
       execStub.callsArg(1);
 
