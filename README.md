@@ -28,7 +28,7 @@ grunt.initConfig({
     main: {
       options: {
         file: 'path/to/your/lcov.info',
-        token: 'your_token',
+        token: 'your_token', // leave blank to use CODECLIMATE_REPO_TOKEN from ENV
         executable: 'path/to/executable' // leave blank to use the default executable
       }
     }
