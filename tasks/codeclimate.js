@@ -15,8 +15,8 @@ module.exports = function task(grunt) {
         done();
       })
       .catch(function catchErr(err) {
+        console.error(err);
         done(false);
-        throw err;
       })
     ;
   });
