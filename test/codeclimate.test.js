@@ -76,7 +76,7 @@ describe('tasks/codeclimate', function codeclimateTasktest() {
         .catch(function assertionTest(err) {
           assert.equal(err.message, fakeError.message);
         })
-        .finally(done)
+        .then(done)
       ;
     });
   });
