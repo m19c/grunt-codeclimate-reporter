@@ -46,7 +46,7 @@ describe('tasks/codeclimate', function codeclimateTasktest() {
 
     it('spawns a child process with the correct executable', function spawnCorrectTest(done) {
       var basePath = path.resolve(__dirname, '..');
-      var bin = path.resolve(basePath, 'node_modules/.bin/codeclimate');
+      var bin = path.resolve(basePath, 'node_modules/.bin/codeclimate-test-reporter');
       var lcovFile = path.resolve(basePath, 'test/coverage.lcov');
       var command = 'CODECLIMATE_REPO_TOKEN=' + fakeToken + ' ' + bin + ' < ' + lcovFile;
 
@@ -76,7 +76,7 @@ describe('tasks/codeclimate', function codeclimateTasktest() {
         .catch(function assertionTest(err) {
           assert.equal(err.message, fakeError.message);
         })
-        .finally(done)
+        .then(done)
       ;
     });
   });

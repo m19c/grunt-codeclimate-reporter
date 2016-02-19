@@ -12,11 +12,12 @@ module.exports = function task(grunt) {
     reporter(options)
       .then(function respondWithRes(res) {
         grunt.log.ok(res);
+        done();
       })
       .catch(function catchErr(err) {
-        throw err;
+        console.error(err);
+        done(false);
       })
-      .finally(done)
     ;
   });
 };
